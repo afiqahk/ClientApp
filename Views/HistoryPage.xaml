@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.HistoryPage"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:HistoryViewModel />
+    </ContentPage.BindingContext>
+
+    <!--Refresh button on toolbar-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh">
+            <!--add: Command="{Binding LoadListCommand}"-->
+            <!--add: Icon="refresh.png"-->
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView Margin="0,5,0,0" 
+                      ItemsSource="{Binding SavedData}"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="StartAndExpand"
+                      CachingStrategy="RecycleElement">
+                    <!--add + binding functions in .cs:
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      >
+                    -->
+                
+                <ListView.Header>
+                    <Grid Margin="0,0,0,5" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Name" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="0" />
+                        <Label Text="Measurement" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                        <Label Text="Distance to" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                    </Grid>
+                </ListView.Header>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,5,0,5" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Measurement}" HorizontalTextAlignment="Center" />
+                                <Label Grid.Column="2" Text="{Binding Distance}" HorizontalTextAlignment="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

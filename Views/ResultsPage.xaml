@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ResultsPage"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:ResultsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <!--First FlexLayout sets the two columns (Direction Row), which are also FlexLayouts-->
+        <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="SpaceEvenly" Margin="10,15,10,15">
+            
+            <!--Basis sets size % w.r.t parent layout-->
+            <!--1st column: nested FlexLayout, for UI, children position start from top-->
+            <FlexLayout FlexLayout.Basis="40%" Direction="Column" JustifyContent="Start" Margin="0,0,10,0">
+                <Button Text="Get Data" Margin="0,5,0,5"/>
+                <!--add: Command="{Binding sendGetData}"
+                    future functionality have same format; bind function set Operation string to transmit with BT-->
+                <Button Text="Save" Margin="0,5,0,5" Clicked="Save_Clicked"/>
+                <!--use Clicked instead of Command; faster since it only needs View objects to push Save Page-->
+            </FlexLayout>
+            
+            <!--2nd column: nested FlexLayout, for display, children position start from top-->
+            <FlexLayout FlexLayout.Basis="60%" Direction="Column" JustifyContent="Start">
+                <Label Text="Measurement/cm" FontAttributes="Bold" Margin="0,5,0,5"/>
+                <Frame OutlineColor="Black">
+                    <Label Text="Example bind later" />
+                </Frame>
+                <Label Text="Distance To/cm" FontAttributes="Bold" Margin="0,5,0,5"/>
+                <Frame OutlineColor="Black">
+                    <Label Text="Example bind later" />
+                </Frame>
+            </FlexLayout>
+            
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

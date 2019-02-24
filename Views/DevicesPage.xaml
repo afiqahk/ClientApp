@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.DevicesPage"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:DevicesViewModel />
+    </ContentPage.BindingContext>
+    
+    <!--Refresh button on toolbar-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh">
+            <!--add: Command="{Binding Refresh}"-->
+            <!--add: Icon="refresh.png"-->
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView Header="Select Device" SelectionMode="Single" HorizontalOptions="StartAndExpand" Margin="10,10,10,10">
+            <!--add: SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"-->
+            <ListView.ItemsSource>
+                <!--replace with "PairedDevices"; List<> is string type-->
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>mono</x:String>
+                    <x:String>monodroid</x:String>
+                    <x:String>monotouch</x:String>
+                    <x:String>monorail</x:String>
+                    <x:String>monodevelop</x:String>
+                    <x:String>monotone</x:String>
+                    <x:String>monopoly</x:String>
+                    <x:String>monomodal</x:String>
+                    <x:String>mononucleosis</x:String>
+                    <x:String>monotone</x:String>
+                    <x:String>monopoly</x:String>
+                    <x:String>monomodal</x:String>
+                    <x:String>mononucleosis</x:String>
+                    <x:String>monotone</x:String>
+                    <x:String>monopoly</x:String>
+                    <x:String>monomodal</x:String>
+                    <x:String>mononucleosis</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

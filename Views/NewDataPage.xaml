@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.NewDataPage"
+             Title="New Data">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name" FontSize="Medium" />
+            <Frame OutlineColor="White">
+                <Entry Text="{Binding Data.Name}" FontSize="Small" />
+            </Frame>
+            
+            <Label Text="Measurement" FontSize="Medium" />
+            <Frame OutlineColor="White">
+                <Label Text="{Binding Data.Measurement}" FontSize="Small" Margin="0" />
+            </Frame>
+            
+            <Label Text="Distance" FontSize="Medium" />
+            <Frame OutlineColor="White">
+                <Label Text="{Binding Data.Distance}" FontSize="Small" Margin="0" />
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
