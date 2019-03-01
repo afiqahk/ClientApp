@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ResultsPage"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:ResultsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <!--First FlexLayout sets the two columns (Direction Row), which are also FlexLayouts-->
+        <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="SpaceEvenly" Margin="10,10,10,10">
+            
+            <!--Basis sets size % w.r.t parent layout-->
+            <!--1st column: nested FlexLayout, for UI, children position start from top-->
+            <FlexLayout FlexLayout.Basis="40%" Direction="Column" FlexLayout.AlignSelf="Start" JustifyContent="Start" Margin="0,0,10,0">
+                
+                <Button FlexLayout.Basis="10%" Text="Get Data" Margin="0,1,0,0" Command="{Binding getData}"/>
+                <!--add: Command="{Binding getData}"
+                    future functionality have same format; bind function set Operation string to transmit with BT-->
+                <Button FlexLayout.Basis="10%" Text="Save" Margin="0,1,0,0" Clicked="Save_Clicked"/>
+                <!--use Clicked instead of Command; faster since it only needs View objects to push Save Page-->
+                <Label FlexLayout.Basis="5%" Text="Control" FontAttributes="Bold" VerticalTextAlignment="End" Margin="0,2,0,1"/>
+                <!--pressed and released events bind to xaml.cs-->
+                <Button FlexLayout.Basis="10%" Text="Move Left" Margin="0,1,0,0" Pressed="leftPressed" Released="leftReleased"/>
+                <Button FlexLayout.Basis="10%" Text="Move Right" Margin="0,1,0,0" Pressed="rightPressed" Released="rightReleased"/>
+                <Button FlexLayout.Basis="10%" Text="Measure" Margin="0,1,0,0" Command="measure"/>
+                <Button FlexLayout.Basis="15%" Text="Calculate Width" Margin="0,1,0,0" Command="calcWidth"/>
+                <Button FlexLayout.Basis="10%" Text="Toggle Laser" Margin="0,1,0,0" Command="laser"/>
+                <Button FlexLayout.Basis="15%" Text="Reset Angle to 0" Margin="0,1,0,0" Command="resetAngle"/>
+            </FlexLayout>
+            
+            <!--2nd column: nested FlexLayout, for display, children position start from top-->
+            <FlexLayout FlexLayout.Basis="60%" Direction="Column" JustifyContent="Start">
+                <Label Text="Measurement/cm" FontAttributes="Bold" Margin="0,5,0,5"/>
+                <Frame OutlineColor="Black">
+                    <Label Text="{Binding msString}" />
+                </Frame>
+                <Label Text="Distance To/cm" FontAttributes="Bold" Margin="0,5,0,5"/>
+                <Frame OutlineColor="Black">
+                    <Label Text="Example bind later" />
+                </Frame>
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" IsEnabled="{Binding IsBusy}" Color="Black" BackgroundColor="Transparent" />
+            </FlexLayout>
+            
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
